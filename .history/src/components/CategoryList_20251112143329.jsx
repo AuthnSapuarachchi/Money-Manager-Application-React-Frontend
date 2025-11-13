@@ -1,0 +1,4 @@
+const CategoryList = () => {
+    return (
+    <>CategoryList</>)
+}

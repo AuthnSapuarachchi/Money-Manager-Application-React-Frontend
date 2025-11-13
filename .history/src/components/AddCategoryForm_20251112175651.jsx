@@ -1,0 +1,85 @@
+import { useEffect, useState } from "react";
+import Input from "./input";
+import EmojiPickerPopup from "./EmojiPickerPopup";
+import { LoaderCircle } from "lucide-react";
+
+const AddCategoryForm = ({onAddCategory, initialCategoryData, isEditing}) => {
+    const [category, setCategory] = useState({
+        name: '',
+        type: 'INCOME',
+        icon: '',
+    });
+
+    const [loading, setLoading] = useState(false);
+
+    useEffect
+
+    const categoryTypeOptions = [
+        { value: 'INCOME', label: 'Income' },
+        { value: 'EXPENSE', label: 'Expense' },
+    ];
+
+    const handleChange = (key, value) => {
+        setCategory({
+            ...category,
+            [key]: value,
+        });
+    };
+
+    const handleSubmit = async() => {
+        setLoading(true);
+        try {
+            await onAddCategory(category);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="p-4">
+
+            <EmojiPickerPopup 
+                icon={category.icon}
+                onSelect={(selectedIcon) => handleChange("icon", selectedIcon)}
+            />
+
+
+            <Input 
+                label="Category Name"
+                value={category.name}
+                onChange={({target}) => handleChange("name", target.value)}
+                placeholder="e.g. Groceries, Salaries, etc."
+                type="text"
+            />
+
+            <Input 
+                label="Category Type"
+                value={category.type}
+                onChange={({target}) => handleChange("type", target.value)}
+                placeholder="Select Type"
+                type="select"
+                isSelect= {true}
+                options={categoryTypeOptions}
+            />
+            <div className="flex justify-end mt-6">
+                <button
+                    type="button"
+                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    disabled={loading}
+                    onClick={handleSubmit}
+                >
+                    {loading ? (
+                        <>  
+                            <LoaderCircle className="w-4 h-4 animate-spin" />
+                            Adding...
+                        </>
+                    ) : (
+                        "Add Category"
+                    )}
+                </button>
+            </div>
+        </div>
+    )
+}
+
+export default AddCategoryForm;

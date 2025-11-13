@@ -1,0 +1,29 @@
+import { useRef, useState } from "react";
+
+const ProfilePhotoSelector = ({image, setImage}) => {
+    
+    const inputRef = useRef(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImage(file);
+
+            const preview 
+        }
+    };
+
+
+    return (
+        <div className="flex justify-center mb-6">
+            <input type="file"
+                accept="image/*"
+                    ref={inputRef}
+                    onChange={handleImageChange} 
+                    className="hidden"/>
+        </div>
+    )
+}
+
+export default ProfilePhotoSelector

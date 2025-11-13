@@ -1,0 +1,8 @@
+import 
+const Menubar = () => {
+    const [openSideMenu, setOpenSideMenu] = useState(false);
+
+    return <div>Menubar</div>;
+}
+
+export default Menubar

@@ -1,0 +1,1 @@
+const CLOUDINARY_UPLOAD_PRESET = "dwyypqs8g";

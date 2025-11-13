@@ -1,0 +1,34 @@
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+
+const Menubar = () => {
+    const [openSideMenu, setOpenSideMenu] = useState(false);
+
+    return (
+        <div className="flex items-center justify-between gap-5 bg-white border border-b border-gray-200/50 backdrop-blur-[2px] py-4 px-4 sm:px-7 sticky top-0 z-30">
+            {/* Left Side */}
+        <div className="flex items-center gap-5">
+                <button 
+                    onClick={() => setOpenSideMenu(!openSideMenu)} 
+                    className="block lg:hidden text-black hover:bg-gray-100 rounded p-1 transition-colors">
+                    {openSideMenu ? (
+                        <X className="text-2xl" />
+                    ) : (
+                        <Menu className="text-2xl" />
+                    )}    
+                </button>
+            </div>
+
+
+            {/* Right Side - Avatar */}
+            <span>Right Side</span>
+
+
+            {/* Mobile view */}
+            <span>Mobile View</span>
+
+        </div>
+    )
+}
+
+export default Menubar

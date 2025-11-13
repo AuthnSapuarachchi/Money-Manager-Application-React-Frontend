@@ -1,0 +1,4 @@
+const RecentTransactions = () => {
+    return (
+    )
+}

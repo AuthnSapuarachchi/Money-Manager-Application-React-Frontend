@@ -1,0 +1,3 @@
+const InfoCard = ({ title, value }) => {
+    
+}
