@@ -24,26 +24,22 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         let profileImageUrl = '';
-        setIsLoading(true);
 
         // simple client-side validation
         if (!fullName.trim()) {
             const msg = 'Please enter a name.';
-            setIsLoading(false);
             setError(msg);
             return;
         }
 
         if (!validateEmail(email)) {
             const msg = 'Please enter a valid email address.';
-            setIsLoading(false);
             setError(msg);
             return;
         }
 
         if (!password.trim()) {
             const msg = 'Please enter a password.';
-            setIsLoading(false);
             setError(msg);
             return;
         }
@@ -52,6 +48,7 @@ const Signup = () => {
         console.log("Profile image file selected:", profileImage);
 
         setError('');
+        setIsLoading(true);
 
         // TODO: replace with real signup API call (axios/fetch)
         try {
@@ -59,16 +56,22 @@ const Signup = () => {
             //upload image if present
             if (profileImage) {
                 console.log("Starting image upload to Cloudinary...");
-                profileImageUrl = await uploadProfileImage(profileImage);
-                console.log("Image upload result:", profileImageUrl);
-                profileImageUrl = profileImageUrl || '';
+                try {
+                    profileImageUrl = await uploadProfileImage(profileImage);
+                    console.log("Image upload result:", profileImageUrl);
+                    profileImageUrl = profileImageUrl || '';
+                } catch (uploadError) {
+                    console.error("Image upload error:", uploadError);
+                    // Continue with signup even if image upload fails
+                    toast.error('Failed to upload profile image, but continuing with signup...');
+                    profileImageUrl = '';
+                }
             } else {
                 console.log("No profile image selected");
             }
 
             console.log("Sending to backend - profilePictureUrl:", profileImageUrl);
             
-            setIsLoading(true);
             const response = await axiosConfig.post(API_ENDPOINTS.register, {
                 fullName,
                 email,
