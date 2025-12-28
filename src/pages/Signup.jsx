@@ -55,22 +55,22 @@ const Signup = () => {
 
             //upload image if present
             if (profileImage) {
-                console.log("Starting image upload to Cloudinary...");
+                console.log("🖼️ Starting image upload to Cloudinary...");
                 try {
                     profileImageUrl = await uploadProfileImage(profileImage);
-                    console.log("Image upload result:", profileImageUrl);
+                    console.log("✅ Image upload successful:", profileImageUrl);
                     profileImageUrl = profileImageUrl || '';
                 } catch (uploadError) {
-                    console.error("Image upload error:", uploadError);
+                    console.error("❌ Image upload error:", uploadError);
                     // Continue with signup even if image upload fails
                     toast.error('Failed to upload profile image, but continuing with signup...');
                     profileImageUrl = '';
                 }
             } else {
-                console.log("No profile image selected");
+                console.log("ℹ️ No profile image selected");
             }
 
-            console.log("Sending to backend - profilePictureUrl:", profileImageUrl);
+            console.log("🚀 Sending registration to backend - profilePictureUrl:", profileImageUrl);
             
             const response = await axiosConfig.post(API_ENDPOINTS.register, {
                 fullName,

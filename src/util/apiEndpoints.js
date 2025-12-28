@@ -1,6 +1,5 @@
-export const BASE_URL =
-  "https://authnsapuarachchi-money-manager-1460.onrender.com/api/v1.0";
-//export const BASE_URL = "http://localhost:8081/api/v1.0";
+// export const BASE_URL = "https://authnsapuarachchi-money-manager-1460.onrender.com/api/v1.0"; // Production
+export const BASE_URL = "http://localhost:8081/api/v1.0"; // Local development
 
 const CLOUDINARY_CLOUD_NAME = "dwyypqs8g";
 
