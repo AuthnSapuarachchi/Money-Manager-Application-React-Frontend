@@ -38,6 +38,7 @@ A modern, responsive web application for managing personal finances with real-ti
 ## ✨ Features
 
 ### 🔐 Authentication & Security
+
 - ✅ User registration with email verification
 - ✅ Secure login with JWT authentication
 - ✅ Protected routes for authenticated users
@@ -45,6 +46,7 @@ A modern, responsive web application for managing personal finances with real-ti
 - ✅ Profile management with photo upload
 
 ### 💼 Financial Management
+
 - ✅ **Dashboard**: Real-time balance, income, expense overview
 - ✅ **Income Tracking**: Add, view, and delete income transactions
 - ✅ **Expense Tracking**: Add, view, and delete expense transactions
@@ -52,17 +54,20 @@ A modern, responsive web application for managing personal finances with real-ti
 - ✅ **Filtering**: Advanced search with date range, keyword, and sorting
 
 ### 📊 Analytics & Visualization
+
 - ✅ Interactive charts (Recharts integration)
 - ✅ Recent transactions list
 - ✅ Financial overview cards
 - ✅ Real-time balance calculation
 
 ### 📤 Export & Reporting
+
 - ✅ Excel export for income/expense data
 - ✅ Email reports with transaction details
 - ✅ Download financial summaries
 
 ### 🎨 User Experience
+
 - ✅ Responsive design (mobile, tablet, desktop)
 - ✅ Dark mode compatible
 - ✅ Emoji picker for categories/transactions
@@ -76,28 +81,33 @@ A modern, responsive web application for managing personal finances with real-ti
 ## 🛠️ Technology Stack
 
 ### Core Framework
+
 - **React**: 19.2.0 (Latest)
 - **Vite**: 7.2.2 (Build tool)
 - **React DOM**: 19.2.0
 - **React Router DOM**: 7.9.5 (Navigation)
 
 ### Styling
+
 - **Tailwind CSS**: 4.1.17
 - **@tailwindcss/vite**: 4.1.17
 - **Lucide React**: 0.553.0 (Icons)
 
 ### State & Data Management
+
 - **React Context API**: Global state management
 - **Axios**: 1.13.2 (HTTP client)
 - **React Hot Toast**: 2.6.0 (Notifications)
 
 ### UI Components & Tools
+
 - **Recharts**: 3.4.1 (Charts & graphs)
 - **Emoji Picker React**: 4.15.0
 - **Moment.js**: 2.30.1 (Date formatting)
 - **XLSX**: 0.18.5 (Excel export)
 
 ### Development Tools
+
 - **ESLint**: Code quality
 - **@vitejs/plugin-react**: 5.1.0
 - **Vite**: Fast development server
@@ -117,6 +127,7 @@ Ensure you have the following installed:
 ```
 
 **Verify Installations:**
+
 ```bash
 node --version   # Should show v18+
 npm --version    # Should show npm version
@@ -127,6 +138,7 @@ npm --version    # Should show npm version
 ### Installation
 
 1. **Clone the Repository**
+
 ```bash
 git clone <repository-url>
 cd moneymanagerwebapp
@@ -135,11 +147,13 @@ cd moneymanagerwebapp
 2. **Install Dependencies**
 
 Using npm:
+
 ```bash
 npm install
 ```
 
 Using yarn:
+
 ```bash
 yarn install
 ```
@@ -291,6 +305,7 @@ moneymanagerwebapp/
 ### Core Components
 
 #### **Dashboard.jsx**
+
 Main layout wrapper with sidebar and menubar integration.
 
 ```jsx
@@ -300,18 +315,22 @@ Main layout wrapper with sidebar and menubar integration.
 ```
 
 #### **Menubar.jsx**
+
 Top navigation with user menu, logout, and sidebar toggle.
 
 Features:
+
 - User profile dropdown
 - Logout functionality
 - Mobile sidebar toggle
 - Responsive design
 
 #### **Sidebar.jsx**
+
 Side navigation with user profile and menu items.
 
 Features:
+
 - Toggleable visibility
 - Profile photo display
 - Active route highlighting
@@ -322,7 +341,9 @@ Features:
 ### Form Components
 
 #### **AddIncomeForm.jsx** / **AddExpenseForm.jsx**
+
 Transaction creation forms with:
+
 - Category selection
 - Amount input
 - Date picker
@@ -330,7 +351,9 @@ Transaction creation forms with:
 - Form validation
 
 #### **AddCategoryForm.jsx**
+
 Category creation with:
+
 - Name input
 - Type selection (income/expense)
 - Emoji picker
@@ -341,16 +364,21 @@ Category creation with:
 ### Data Display Components
 
 #### **FinanceOverview.jsx**
+
 Three-card display showing:
+
 - Total Balance
 - Total Income
 - Total Expense
 
 #### **RecentTransactions.jsx**
+
 Unified list of recent income and expenses.
 
 #### **IncomeList.jsx** / **ExpenseList.jsx**
+
 Detailed transaction tables with:
+
 - Category display
 - Amount formatting
 - Date formatting
@@ -362,30 +390,35 @@ Detailed transaction tables with:
 ## 📄 Pages
 
 ### **Home.jsx** (Dashboard)
+
 - Financial overview cards
 - Recent transactions
 - Quick statistics
 - Charts and graphs
 
 ### **Income.jsx**
+
 - Add income form
 - Income list table
 - Income analytics
 - Excel export
 
 ### **Expense.jsx**
+
 - Add expense form
 - Expense list table
 - Expense analytics
 - Excel export
 
 ### **Category.jsx**
+
 - Create categories
 - View all categories
 - Edit categories
 - Category type filtering
 
 ### **Filter.jsx**
+
 - Advanced search
 - Date range filtering
 - Keyword search
@@ -393,6 +426,7 @@ Detailed transaction tables with:
 - Export filtered results
 
 ### **Login.jsx** / **Signup.jsx**
+
 - Authentication forms
 - Input validation
 - Error handling
@@ -426,12 +460,13 @@ const AppContext = createContext();
 ### Usage
 
 ```jsx
-import { useContext } from 'react';
-import { AppContext } from '../context/AppContext';
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 function Component() {
-  const { user, setUser, isSidebarOpen, toggleSidebar } = useContext(AppContext);
-  
+  const { user, setUser, isSidebarOpen, toggleSidebar } =
+    useContext(AppContext);
+
   // Use state
   console.log(user.fullName);
   toggleSidebar();
@@ -455,7 +490,7 @@ Located in `src/util/axiosConfig.jsx`:
 ```javascript
 // Automatic JWT token injection
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -464,8 +499,8 @@ api.interceptors.request.use((config) => {
 
 // Error handling
 api.interceptors.response.use(
-  response => response,
-  error => {
+  (response) => response,
+  (error) => {
     if (error.response?.status === 401) {
       // Redirect to login
     }
@@ -495,8 +530,8 @@ export const API_ENDPOINTS = {
 ### Making API Calls
 
 ```jsx
-import axios from '../util/axiosConfig';
-import { API_ENDPOINTS } from '../util/apiEndpoints';
+import axios from "../util/axiosConfig";
+import { API_ENDPOINTS } from "../util/apiEndpoints";
 
 // GET request
 const response = await axios.get(API_ENDPOINTS.getAllIncomes);
@@ -505,7 +540,7 @@ const response = await axios.get(API_ENDPOINTS.getAllIncomes);
 const response = await axios.post(API_ENDPOINTS.addIncome, {
   name: "Salary",
   amount: 5000,
-  categoryId: 1
+  categoryId: 1,
 });
 
 // DELETE request
@@ -522,16 +557,16 @@ Custom configuration in `tailwind.config.js`:
 
 ```javascript
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx}'],
+  content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
       colors: {
-        primary: '#3B82F6',
-        secondary: '#10B981'
-      }
-    }
-  }
-}
+        primary: "#3B82F6",
+        secondary: "#10B981",
+      },
+    },
+  },
+};
 ```
 
 ### Common Utility Classes
@@ -587,6 +622,7 @@ npm run preview
 ```
 
 **Deploy Steps:**
+
 1. Connect GitHub repository
 2. Set build command: `npm run build`
 3. Set publish directory: `dist`
@@ -601,6 +637,7 @@ vercel --prod
 ```
 
 #### Other Platforms
+
 - **GitHub Pages**: Use `gh-pages` package
 - **AWS S3 + CloudFront**
 - **Firebase Hosting**
@@ -649,6 +686,7 @@ Set environment variables in your hosting platform:
 ### Common Issues
 
 **API Connection Failed**
+
 ```bash
 # Check backend is running
 curl http://localhost:8081/api/v1.0/health
@@ -657,6 +695,7 @@ curl http://localhost:8081/api/v1.0/health
 ```
 
 **Build Errors**
+
 ```bash
 # Clear cache and reinstall
 rm -rf node_modules package-lock.json
@@ -664,6 +703,7 @@ npm install
 ```
 
 **Styling Not Applied**
+
 ```bash
 # Rebuild Tailwind
 npm run dev
@@ -700,6 +740,7 @@ This project is licensed under the MIT License.
 ## 👨‍💻 Author
 
 **Your Name**
+
 - GitHub: [@yourusername](https://github.com/yourusername)
 - Email: your.email@example.com
 
