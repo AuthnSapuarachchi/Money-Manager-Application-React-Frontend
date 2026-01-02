@@ -10,6 +10,12 @@ export const AppContextProvider = ({ children }) => {
         return savedUser ? JSON.parse(savedUser) : {};
     });
 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
+        // Initialize from localStorage, default to true
+        const saved = localStorage.getItem('sidebarOpen');
+        return saved !== null ? JSON.parse(saved) : true;
+    });
+
     // Save user to localStorage whenever it changes
     useEffect(() => {
         if (user && Object.keys(user).length > 0) {
@@ -19,15 +25,27 @@ export const AppContextProvider = ({ children }) => {
         }
     }, [user]);
 
+    // Save sidebar state to localStorage
+    useEffect(() => {
+        localStorage.setItem('sidebarOpen', JSON.stringify(isSidebarOpen));
+    }, [isSidebarOpen]);
+
     const clearUser = () => {
         setUser({});
         localStorage.removeItem('user');
     };
 
+    const toggleSidebar = () => {
+        setIsSidebarOpen(prev => !prev);
+    };
+
     const contextValue = {
         user,
         setUser,
-        clearUser
+        clearUser,
+        isSidebarOpen,
+        setIsSidebarOpen,
+        toggleSidebar
     };
 
     return (

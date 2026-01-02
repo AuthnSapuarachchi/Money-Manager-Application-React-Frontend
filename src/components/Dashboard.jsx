@@ -5,7 +5,7 @@ import { AppContext } from "../context/AppContext";
 
 const Dashboard = ({children, activeLink}) => {
 
-    const {user} = useContext(AppContext);
+    const {user, isSidebarOpen} = useContext(AppContext);
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -13,15 +13,20 @@ const Dashboard = ({children, activeLink}) => {
 
             {user && (
                 <div className="flex">
-                <div className="max-[1080px]:hidden">
-                    {/* sidebar */}
-                    <Sidebar activeLink={activeLink} />
-                </div>
+                    {/* Desktop Sidebar - Toggleable */}
+                    <div className={`max-[1080px]:hidden transition-all duration-300 ${
+                        isSidebarOpen ? 'w-64' : 'w-0 overflow-hidden'
+                    }`}>
+                        {isSidebarOpen && <Sidebar activeLink={activeLink} />}
+                    </div>
 
-                <div className="flex-1 p-6">
-                    {children}
+                    {/* Main Content - Adjusts based on sidebar state */}
+                    <div className={`flex-1 p-6 transition-all duration-300 ${
+                        isSidebarOpen ? 'ml-0' : 'ml-0'
+                    }`}>
+                        {children}
+                    </div>
                 </div>
-            </div>
             )}
         </div>
     )
