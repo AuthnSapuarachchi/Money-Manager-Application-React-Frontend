@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const axiosConfig = axios.create({
-     baseURL: "http://localhost:8081/api/v1.0", // Local development
+    baseURL: "http://13.250.109.151:8080", //AWS deployment
+    //  baseURL: "http://localhost:8081/api/v1.0", // Local development
     //baseURL: "https://authnsapuarachchi-money-manager-59js.onrender.com/api/v1.0", // Production
     timeout: 30000, // 30 seconds timeout for slow Render servers
     headers: {
