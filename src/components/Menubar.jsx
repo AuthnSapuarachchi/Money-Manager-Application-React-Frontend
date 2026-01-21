@@ -50,7 +50,7 @@ const Menubar = () => {
                         toggleSidebar();
                     }} 
                     className="text-black hover:bg-gray-100 rounded p-2 transition-colors border border-gray-300"
-                    title={openSideMenu ? "Open Sidebar" : "Close Sidebar"}
+                    title={openSideMenu ? "Close Sidebar" : "Open Sidebar"}
                     aria-label={openSideMenu ? "Close Sidebar" : "Open Sidebar"}
                     aria-expanded={openSideMenu}>
                     {openSideMenu ? (
