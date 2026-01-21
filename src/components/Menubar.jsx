@@ -46,11 +46,13 @@ const Menubar = () => {
             <div className="flex items-center gap-5">
                 <button 
                     onClick={() => {
-                        setOpenSideMenu(!openSideMenu);
+                        setOpenSideMenu(prev => !prev);
                         toggleSidebar();
                     }} 
                     className="text-black hover:bg-gray-100 rounded p-2 transition-colors border border-gray-300"
-                    title={openSideMenu ? "Close Sidebar" : "Open Sidebar"}>
+                    title={openSideMenu ? "Open Sidebar" : "Close Sidebar"}
+                    aria-label={openSideMenu ? "Close Sidebar" : "Open Sidebar"}
+                    aria-expanded={openSideMenu}>
                     {openSideMenu ? (
                         <X size={24} />
                     ) : (
