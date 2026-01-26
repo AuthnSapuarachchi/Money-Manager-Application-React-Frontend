@@ -5,10 +5,9 @@ import { AppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
 
 const Menubar = () => {
-    const [openSideMenu, setOpenSideMenu] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const dropdownRef = useRef(null);
-    const { user, clearUser, toggleSidebar } = useContext(AppContext);
+    const { user, clearUser, toggleSidebar, isSidebarOpen } = useContext(AppContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -45,15 +44,12 @@ const Menubar = () => {
             {/* Left Side */}
             <div className="flex items-center gap-5">
                 <button 
-                    onClick={() => {
-                        setOpenSideMenu(prev => !prev);
-                        toggleSidebar();
-                    }} 
+                    onClick={toggleSidebar} 
                     className="text-black hover:bg-gray-100 rounded p-2 transition-colors border border-gray-300"
-                    title={openSideMenu ? "Close Sidebar" : "Open Sidebar"}
-                    aria-label={openSideMenu ? "Close Sidebar" : "Open Sidebar"}
-                    aria-expanded={openSideMenu}>
-                    {openSideMenu ? (
+                    title={isSidebarOpen ? "Close Sidebar" : "Open Sidebar"}
+                    aria-label={isSidebarOpen ? "Close Sidebar" : "Open Sidebar"}
+                    aria-expanded={isSidebarOpen}>
+                    {isSidebarOpen ? (
                         <X size={24} />
                     ) : (
                         <Menu size={24} />
@@ -114,7 +110,7 @@ const Menubar = () => {
             </div>
 
             {/*Mobile Side Menu */}
-            {openSideMenu && (
+            {isSidebarOpen && (
                 <div className="fixed lefy-0 right-0 bg-white bordr-b border-gray-200 lg:hidden z-20 top-[73px">
                     <Sidebar />
                 </div>
