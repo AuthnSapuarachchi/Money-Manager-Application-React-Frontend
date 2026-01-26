@@ -75,7 +75,7 @@ const Login = () => {
                 <div className="text-center mb-10">
                     <div className="flex items-center justify-center gap-2 mb-4">
                         <img src={assets.logo} alt="logo" className="h-10 w-10"/>
-                        <h1 className="text-2xl font-semibold text-gray-900">Money Manager</h1>
+                        <h1 className="text-2xl font-semibold text-gray-900">Smart Money Manager</h1>
                     </div>
                     <h2 className="text-xl font-medium text-gray-800 mb-1">Welcome Back</h2>
                     <p className="text-sm text-gray-500">Sign in to continue</p>
