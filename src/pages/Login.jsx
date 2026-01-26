@@ -69,52 +69,67 @@ const Login = () => {
     }
 
     return (
-        <div className="h-screen w-full relative flex items-center justify-center overflow-hidden">
-            <img src={assets.login_bg} alt="Background" className="absolute top-0 left-0 w-full h-full object-cover blur-sm" />
-
-            <div className="relative z-10 w-full max-w-lg px-6">
-                <div className="bg-white bg-opacity-95 backdrop-blur-sm rounded-lg shadow-2xl p-8 max-h-[90vh] overflow-y-auto">
-                    <h2 className="text-2xl font-semibold text-center">Welcome back</h2>
-                    <p className="text-center">Sign in to continue managing your money</p>
-
-                    <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-                        <Input
-                            label="Email Address"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Enter your email"
-                        />
-
-                        <Input
-                            label="Password"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Enter your password"
-                        />
-
-                        {error && <p className="text-red-500 text-sm text-center bg-red-50 p-2 rounded">{error}</p>}
-
-                        <button
-                            disabled={isLoading}
-                            type="submit"
-                            className={`w-full bg-blue-500 text-white py-2 rounded-md ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'}`}
-                        >
-                            {isLoading ? (
-                                <span className="inline-flex items-center justify-center">
-                                    <LoaderCircle className="animate-spin w-5 h-5 mr-2" />
-                                    <span>Logging in...</span>
-                                </span>
-                            ) : (
-                                "LOGIN"
-                            )}
-                        </button>
-
-                        <p className="text-sm text-center">
-                            Don't have an account? <Link to="/signup" className="text-blue-500 hover:underline"> Sign up</Link>
-                        </p>
-                    </form>
+        <div className="min-h-screen w-full flex items-center justify-center bg-white p-4">
+            <div className="w-full max-w-md">
+                {/* Logo and Title */}
+                <div className="text-center mb-10">
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                        <img src={assets.logo} alt="logo" className="h-10 w-10"/>
+                        <h1 className="text-2xl font-semibold text-gray-900">Money Manager</h1>
+                    </div>
+                    <h2 className="text-xl font-medium text-gray-800 mb-1">Welcome Back</h2>
+                    <p className="text-sm text-gray-500">Sign in to continue</p>
                 </div>
+
+                {/* Form */}
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <Input
+                        label="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email"
+                    />
+
+                    <Input
+                        label="Password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Enter your password"
+                    />
+
+                    {error && (
+                        <div className="bg-red-50 text-red-600 px-4 py-3 rounded text-sm">
+                            {error}
+                        </div>
+                    )}
+
+                    <button
+                        disabled={isLoading}
+                        type="submit"
+                        className={`w-full bg-gray-900 text-white py-3 rounded font-medium transition-all ${
+                            isLoading 
+                                ? 'opacity-50 cursor-not-allowed' 
+                                : 'hover:bg-gray-800'
+                        }`}
+                    >
+                        {isLoading ? (
+                            <span className="inline-flex items-center justify-center">
+                                <LoaderCircle className="animate-spin w-5 h-5 mr-2" />
+                                <span>Signing in...</span>
+                            </span>
+                        ) : (
+                            "Sign In"
+                        )}
+                    </button>
+
+                    <p className="text-center text-sm text-gray-600">
+                        Don't have an account?{' '}
+                        <Link to="/signup" className="text-blue-600 font-medium hover:underline">
+                            Create Account
+                        </Link>
+                    </p>
+                </form>
             </div>
         </div>
     )
